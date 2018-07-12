@@ -5,6 +5,7 @@ import me.kix.juno.module.manage.ModuleManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author Kix
@@ -16,12 +17,17 @@ public class BasicModuleManager implements ModuleManager {
 
 	@Override
 	public void register(Module module) {
-
+		modules.put(module.getLabel(), module);
 	}
 
 	@Override
 	public void unregister(Module module) {
+		modules.remove(module.getLabel());
+	}
 
+	@Override
+	public Optional<Module> getModule(String module) {
+		return Optional.of(modules.get(module));
 	}
 
 	@Override
